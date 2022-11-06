@@ -35,6 +35,9 @@ void knightTour(vector<vector<int>>& ChessBoard, int N, int x, int y, int visite
 		}
 
 		return;
+
+		ChessBoard[x][y] = 0;
+		return;
 	}
 
 	for (int i = 0; i < 8; i++) {
@@ -53,18 +56,28 @@ void knightTour(vector<vector<int>>& ChessBoard, int N, int x, int y, int visite
 int main() {
 
 	int n;
+
+	espacio();
+	cout << "Input :" << endl;
+	cout << "N = ";
 	cin >> n;
+
 	vector<vector<int> > ChessBoard(n, vector<int>(n, 0));
 	int N = ChessBoard.size();
 	int X = 1;
 	int Y = 1;
 
-	knightTour(ChessBoard, N, X - 1, Y - 1);
+	espacio();
+	
+	cout << "Output : " << endl;
 
+	knightTour(ChessBoard, N, X - 1, Y - 1);
 	if (!isPossible) {
 		cout << "NO HAY UNA POSIBLE SOLUCION";
 		espacio();
 	}
+
+	espacio();
 
 	return 0;
 }
