@@ -35,22 +35,23 @@ void knightTour(vector<vector<int>>& ChessBoard, int N, int x, int y, int visite
 		}
 
 		return;
+	}
+
+	if (isPossible != true){
+		for (int i = 0; i < 8; i++) {
+
+		int newX = x + DirX[i];
+		int newY = y + DirY[i];
+
+			if (isSafe(newX, newY, N, ChessBoard) && !ChessBoard[newX][newY]) {
+				knightTour(ChessBoard, N, newX, newY, visited + 1);
+			}
+		}
 
 		ChessBoard[x][y] = 0;
 		return;
 	}
 
-	for (int i = 0; i < 8; i++) {
-
-		int newX = x + DirX[i];
-		int newY = y + DirY[i];
-
-		if (isSafe(newX, newY, N, ChessBoard) && !ChessBoard[newX][newY]) {
-			knightTour(ChessBoard, N, newX, newY, visited + 1);
-		}
-	}
-
-	ChessBoard[x][y] = 0;
 }
 
 int main() {
@@ -72,7 +73,8 @@ int main() {
 	cout << "Output : " << endl;
 
 	knightTour(ChessBoard, N, X - 1, Y - 1);
-	if (!isPossible) {
+
+	if (isPossible == false) {
 		cout << "NO HAY UNA POSIBLE SOLUCION";
 		espacio();
 	}
