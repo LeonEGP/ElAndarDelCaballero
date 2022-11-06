@@ -8,6 +8,10 @@ int DirX[] = { 2, 1, -1, -2, -2, -1, 1, 2 };
 int DirY[] = { 1, 2, 2, 1, -1, -2, -2, -1 };
 bool isPossible = false;
 
+void espacio(){
+	cout << endl;
+}
+
 bool isSafe(int i, int j, int n, vector<vector<int> >& Board) {
 	return (i >= 0 && j >= 0 && i < n && j < n && Board[i][j] == 0);
 }
@@ -30,10 +34,6 @@ void knightTour(vector<vector<int>>& ChessBoard, int N, int x, int y, int visite
 
 		}
 
-		cout << endl;
-		return;
-
-		ChessBoard[x][y] = 0;
 		return;
 	}
 
@@ -50,19 +50,20 @@ void knightTour(vector<vector<int>>& ChessBoard, int N, int x, int y, int visite
 	ChessBoard[x][y] = 0;
 }
 
-// Driver Code
-int main()
-{
-	vector<vector<int> > ChessBoard(5, vector<int>(5, 0));
+int main() {
+
+	int n;
+	cin >> n;
+	vector<vector<int> > ChessBoard(n, vector<int>(n, 0));
 	int N = ChessBoard.size();
 	int X = 1;
 	int Y = 1;
 
 	knightTour(ChessBoard, N, X - 1, Y - 1);
 
-	// If no valid sequence of moves exist
 	if (!isPossible) {
-		cout << -1;
+		cout << "NO HAY UNA POSIBLE SOLUCION";
+		espacio();
 	}
 
 	return 0;
