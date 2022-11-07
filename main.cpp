@@ -63,6 +63,8 @@ void recorridoDelCaballeroBT(int x, int y, vector<vector<int>>& tablero, bool& e
 		tablero[x][y] = 0;
 		return;
 	}
+
+	return;
 }
 
 //Función main que ejecuta el programa, no recibe parámetros, retorna un entero [return 0].
