@@ -57,7 +57,7 @@ void recorridoDelCaballeroBT(int x, int y, vector<vector<int>>& tablero, bool& e
 			int nuevaY = y + movimientoY[i];
 
 			if (esSeguro(nuevaX, nuevaY, tablero) && !tablero[nuevaX][nuevaY]) {
-				recorridoDelCaballeroBT(nuevaX, nuevaY, tablero, esPosible, visitado + 1);
+				recorridoDelCaballeroBT(nuevaX, nuevaY, tablero, esPosible, visitado + 1); //Recursividad.
 			}
 		}
 
