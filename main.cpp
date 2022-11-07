@@ -34,7 +34,7 @@ bool esSeguro(int x, int y, vector<vector<int>> tablero) { //Complejidad Computa
 	return (x >= 0 && x < tablero.size() && y >= 0 && y < tablero.size() && tablero[x][y] == 0);
 }
 
-void knightTour(int x, int y, vector<vector<int>>& tablero, bool& esPosible, int visitado = 1) { //Complejidad Computacional: O(8^(n^2)) [8, debido a que es la cantidad de movimientos posibles que se pueden realizar], siendo n la cantidad de filas o columnas en el tablero [Forzosamente: cuadrado].
+void recorridoDelCaballeroBT(int x, int y, vector<vector<int>>& tablero, bool& esPosible, int visitado = 1) { //Complejidad Computacional: O(8^(n^2)) [8, debido a que es la cantidad de movimientos posibles que se pueden realizar], siendo n la cantidad de filas o columnas en el tablero [Forzosamente: cuadrado].
 
 	vector<int> movimientoX = { 2, 1, -1, -2, -2, -1, 1, 2 };
 	vector<int> movimientoY = { 1, 2, 2, 1, -1, -2, -2, -1 };
@@ -56,7 +56,7 @@ void knightTour(int x, int y, vector<vector<int>>& tablero, bool& esPosible, int
 			int nuevaY = y + movimientoY[i];
 
 			if (esSeguro(nuevaX, nuevaY, tablero) && !tablero[nuevaX][nuevaY]) {
-				knightTour(nuevaX, nuevaY, tablero, esPosible, visitado + 1);
+				recorridoDelCaballeroBT(nuevaX, nuevaY, tablero, esPosible, visitado + 1);
 			}
 		}
 
@@ -66,7 +66,7 @@ void knightTour(int x, int y, vector<vector<int>>& tablero, bool& esPosible, int
 }
 
 //Función main que ejecuta el programa, no recibe parámetros, retorna un entero [return 0].
-int main() { //Complejidad Computacional: O(1).
+int main() { //Complejidad Computacional: O(1). Dentro de esa ejecución lineal, existe un ciclo for con complejidad O(n) donde se llena el vector de vectores [Que es el tablero], y además se muestra una posible ruta, determinada meditante un algoritmo de BackTracking, para la solución al Recorrido del Caballero, donde la Complejidad Computacional en el peor caso sería: O(8^(n^2)) [8, debido a que es la cantidad de movimientos posibles que se pueden realizar], siendo n la cantidad de filas o columnas en el tablero [Forzosamente: cuadrado].
 
 	vector<vector <int>> tablero;
 	bool esPosible;
@@ -88,7 +88,7 @@ int main() { //Complejidad Computacional: O(1).
 	cout << "Output : " << endl;
 
 	esPosible = false;
-	knightTour(0, 0, tablero, esPosible); //Complejidad Computacional: O(8^(n^2)) [8, debido a que es la cantidad de movimientos posibles que se pueden realizar], siendo n la cantidad de filas o columnas en el tablero [Forzosamente: cuadrado].
+	recorridoDelCaballeroBT(0, 0, tablero, esPosible); //Complejidad Computacional: O(8^(n^2)) [8, debido a que es la cantidad de movimientos posibles que se pueden realizar], siendo n la cantidad de filas o columnas en el tablero [Forzosamente: cuadrado].
 
 	if (esPosible == false) {
 		cout << "NO HAY UNA POSIBLE SOLUCION!";
