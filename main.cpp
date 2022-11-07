@@ -34,6 +34,7 @@ bool esSeguro(int x, int y, vector<vector<int>> tablero) { //Complejidad Computa
 	return (x >= 0 && x < tablero.size() && y >= 0 && y < tablero.size() && tablero[x][y] == 0);
 }
 
+//Función que implementa una solución para el Problema del Recorrido del Caballero, recibe un entero x, un entero y, un vector de vectores de enteros referenciado como tablero, un booleano referenciado como la posibilidad de obtener una solución, y un entero visitado que es igual a 1. No tiene valores de retorna, ya que se trabaja sobre los parámetros referenciados. Si es posible, imprime una solución mediante BackTracking en consola.
 void recorridoDelCaballeroBT(int x, int y, vector<vector<int>>& tablero, bool& esPosible, int visitado = 1) { //Complejidad Computacional: O(8^(n^2)) [8, debido a que es la cantidad de movimientos posibles que se pueden realizar], siendo n la cantidad de filas o columnas en el tablero [Forzosamente: cuadrado].
 
 	vector<int> movimientoX = { 2, 1, -1, -2, -2, -1, 1, 2 };
