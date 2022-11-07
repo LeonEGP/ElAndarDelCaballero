@@ -15,7 +15,7 @@ void espacio() { //Complejidad Computacional: O(1), es una ejecución lineal en 
 	cout << endl;
 }
 
-//Función que imprime el el orden de recorrido en el tablero, recibe como parámetro el tablero en forma de vector de vectores de enteros (una matriz), y no tiene valor de retorno.
+//Función que imprime el el orden de recorrido en el tablero [imprime el contenido de la matriz], recibe como parámetro el tablero en forma de vector de vectores de enteros (una matriz), y no tiene valor de retorno.
 void imprimirTablero(vector<vector<int>> tablero){ //Complejidad Computacional: O(n^2), siendo n cada valor en el tablero.
 
 	//Complejidad Computacional: O(n^2), siendo n cada valor en el tablero.
