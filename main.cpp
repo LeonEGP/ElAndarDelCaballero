@@ -4,59 +4,58 @@
 
 using namespace std;
 
-vector<int> DirX = { 2, 1, -1, -2, -2, -1, 1, 2 };
-vector<int> DirY = { 1, 2, 2, 1, -1, -2, -2, -1 };
-bool isPossible = false;
-
-void espacio(){
+void espacio() {
 	cout << endl;
 }
 
-bool isSafe(int i, int j, int n, vector<vector<int>>& Board) {
-	return (i >= 0 && j >= 0 && i < n && j < n && Board[i][j] == 0);
+bool esSeguro(int x, int y, vector<vector<int>> tablero) {
+	return (x >= 0 && x < tablero.size() && y >= 0 && y < tablero.size() && tablero[x][y] == 0);
 }
 
-void knightTour(vector<vector<int>>& ChessBoard, int n, int x, int y, int visited = 1) {
+void knightTour(int x, int y, vector<vector<int>>& tablero, bool& esPosible, int visitado = 1) {
 
-	ChessBoard[x][y] = visited;
+	vector<int> movimientoX = { 2, 1, -1, -2, -2, -1, 1, 2 };
+	vector<int> movimientoY = { 1, 2, 2, 1, -1, -2, -2, -1 };
 
-	if (visited == n * n) {
+	tablero[x][y] = visitado;
 
-		isPossible = true;
+	if (visitado == tablero.size() * tablero.size()) {
 
-		for (int i = 0; i < n; i++) {
+		esPosible = true;
 
-			for (int j = 0; j < n; j++) {
-				cout << ChessBoard[i][j] - 1 << " ";
+		for (int i = 0; i < tablero.size(); i++) {
+
+			for (int j = 0; j < tablero.size(); j++) {
+				cout << tablero[i][j] - 1 << " ";
 			}
 
-			cout << endl;
-
+			espacio();
 		}
 
 		return;
 	}
 
-	if (isPossible != true){
+	if (esPosible != true) {
+
 		for (int i = 0; i < 8; i++) {
 
-		int newX = x + DirX[i];
-		int newY = y + DirY[i];
+			int nuevaX = x + movimientoX[i];
+			int nuevaY = y + movimientoY[i];
 
-			if (isSafe(newX, newY, n, ChessBoard) && !ChessBoard[newX][newY]) {
-				knightTour(ChessBoard, n, newX, newY, visited + 1);
+			if (esSeguro(nuevaX, nuevaY, tablero) && !tablero[nuevaX][nuevaY]) {
+				knightTour(nuevaX, nuevaY, tablero, esPosible, visitado + 1);
 			}
 		}
 
-		ChessBoard[x][y] = 0;
+		tablero[x][y] = 0;
 		return;
 	}
-
 }
 
 int main() {
 
 	vector<vector <int>> tablero;
+	bool esPosible;
 	int n;
 
 	espacio();
@@ -65,8 +64,8 @@ int main() {
 	cout << "N = ";
 	cin >> n;
 
-	for (int i = 0; i<n; i++){
-		vector<int> auxiliar(n,0);
+	for (int i = 0; i < n; i++) {
+		vector<int> auxiliar(n, 0);
 		tablero.push_back(auxiliar);
 	}
 
@@ -74,9 +73,10 @@ int main() {
 
 	cout << "Output : " << endl;
 
-	knightTour(tablero, tablero.size(), 0, 0);
+	esPosible = false;
+	knightTour(0, 0, tablero, esPosible);
 
-	if (isPossible == false) {
+	if (esPosible == false) {
 		cout << "NO HAY UNA POSIBLE SOLUCION!";
 		espacio();
 	}
