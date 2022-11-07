@@ -5,6 +5,7 @@
 //Inclusión de librerías.
 #include <iostream>
 #include <vector>
+#include <iomanip>
 
 //Ajuste a estandar.
 using namespace std;
@@ -21,7 +22,7 @@ void imprimirTablero(vector<vector<int>> tablero){ //Complejidad Computacional: 
 	for (int i = 0; i < tablero.size(); i++) { //Complejidad Computacional: O(n), siendo n cada valor en cada fila del tablero.
 
 		for (int j = 0; j < tablero[i].size(); j++) { //Complejidad Computacional: O(n), siendo n cada valor en cada columna de la fila del tablero.
-			cout << tablero[i][j] - 1 << " ";
+			cout << " " << setw(2) << tablero[i][j] - 1 << " ";
 		}
 
 		espacio();
